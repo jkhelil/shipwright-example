@@ -1,0 +1,18 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: buildah-golang-build
+  annotations:
+    build.shipwright.io/verify.repository: "true"
+spec:
+  source:
+    url: https://github.com/shipwright-io/sample-go
+    contextDir: docker-build
+  strategy:
+    name: buildah
+    kind: ClusterBuildStrategy
+  dockerfile: Dockerfile
+  output:
+    image: quay.io/jkhelil/shipwright-example:latest
+    credentials:
+      name: push-secret

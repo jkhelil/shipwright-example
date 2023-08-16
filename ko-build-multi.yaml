@@ -1,0 +1,18 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: ko-build-multi
+spec:
+  source:
+    url: https://github.com/jkhelil/shipwright-example
+  strategy:
+    name: ko
+    kind: ClusterBuildStrategy
+  paramValues:
+  - name: target-platform
+    value: all   
+  output:
+    image: quay.io/jkhelil/shipwright
+    credentials:
+      name: push-secret
+

@@ -1,3 +1,3 @@
-module github.com/imjasonh/shipwright-example
+module github.com/jkhelil/shipwright-example
 
 go 1.16
