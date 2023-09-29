@@ -9,7 +9,7 @@ spec:
   paramValues:
     #
     - name: SOURCE_SUBPATH
-      value: cnb-sample-java
+      value: build-633/cnb-sample-java
     - name: CNB_PLATFORM_API
       value: "0.12"
     - name: CNB_BUILDER_IMAGE
