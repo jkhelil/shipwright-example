@@ -5,7 +5,7 @@ metadata:
 spec:
   source:
     url: https://github.com/jkhelil/shipwright-example
-    contextDir: cnb-sample-java
+    contextDir: build-633/cnb-sample-java
   paramValues:
     #
     - name: SOURCE_SUBPATH
