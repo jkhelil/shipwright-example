@@ -1,0 +1,42 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: buildpack-mvn-build
+spec:
+  source:
+    url: https://github.com/jkhelil/shipwright-example
+    contextDir: cnb-sample-java
+  paramValues:
+    #
+    - name: SOURCE_SUBPATH
+      value: cnb-sample-java
+    - name: CNB_PLATFORM_API
+      value: "0.12"
+    - name: CNB_BUILDER_IMAGE
+      value: paketobuildpacks/builder-jammy-tiny:0.0.176
+    - name: CNB_LIFECYCLE_IMAGE
+      value: buildpacksio/lifecycle:0.17.0
+    - name: RUN_IMAGE
+      value: paketobuildpacks/run-jammy-tiny:latest
+    - name: APP_IMAGE
+      value: quay.io/jkhelil/cnb-sample-java
+    - name: PROCESS_TYPE
+      value: ""
+    - name: ENV_VARS
+      values:
+        - value: BP_NATIVE_IMAGE=false
+        - value: BP_MAVEN_BUILD_ARGUMENTS=package -DskipTests=true -Dmaven.javadoc.skip=true
+  strategy:
+    name: buildpacks
+    kind: ClusterBuildStrategy
+  output:
+    image: quay.io/jkhelil/cnb-sample-java:latest
+    credentials:
+      name: push-secret
+  volumes:
+    - name: bindings
+      secret:
+        secretName: mvn-bindings
+    - name: cache-dir
+      emptyDir: {}
+    

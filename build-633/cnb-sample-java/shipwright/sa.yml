@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: shipwright
+secrets:
+  - name: registry-creds
+imagePullSecrets:
+  - name: registry-creds

@@ -1,0 +1,16 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: buildpack-java-build
+spec:
+  source:
+    url: https://github.com/jkhelil/shipwright-example.git
+    contextDir: hello-world-spring-boot
+  strategy:
+    name: buildpacks-v3
+    kind: ClusterBuildStrategy
+  output:
+    image: quay.io/jkhelil/shipwright-example:latest
+    credentials:
+      name: push-secret
+
